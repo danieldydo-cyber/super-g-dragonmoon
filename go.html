@@ -1,0 +1,2 @@
+<!doctype html><meta charset="utf-8"><title>DargonMoon Live →</title><link rel="icon" href="logo.png"><body style="background:#0b0b14;color:#eee;font-family:sans-serif;text-align:center;padding-top:20vh"><img src="logo.png" width="120"><p id="m">Łączenie z backendem…</p>
+<script>fetch('live.json?'+Date.now(),{cache:'no-store'}).then(r=>r.json()).then(j=>{location.replace(j.url+location.hash)}).catch(()=>m.textContent='Backend offline')</script>
