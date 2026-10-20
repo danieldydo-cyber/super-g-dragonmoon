@@ -1,0 +1,327 @@
+<!doctype html><html lang="pl"><head><script src="static-shim.js"></script><link rel="icon" href="logo.png"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Super G 🐲 · D DragonMoon DJ</title>
+<meta property="og:title" content="D DragonMoon DJ"><meta property="og:description" content="Kosmiczny DJ: decki, wizualizacje, niebo na żywo, mapa gwiazd Kraków">
+<style>
+:root{--bg:#04050a;--p:#0f1322;--n:#00f0ff;--m:#ff2bd6;--y:#ffd36b;--t:#cfd6ff}
+*{box-sizing:border-box}body{margin:0;color:var(--t);font:14px/1.4 system-ui,sans-serif;background:radial-gradient(ellipse at top,#140a2a 0,var(--bg) 60%) fixed}
+header{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid #222a44;flex-wrap:wrap}
+h1{margin:0;font-size:20px;letter-spacing:3px;background:linear-gradient(90deg,var(--n),var(--m),var(--y));-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 0 8px #ff2bd688)}
+nav{display:flex;gap:6px;flex-wrap:wrap}nav a{color:var(--m);text-decoration:none;border:1px solid #3a2050;padding:2px 8px;border-radius:12px;font-size:11px}
+.tabs{display:flex;gap:4px;overflow-x:auto;padding:8px 12px;position:sticky;top:0;background:#04050ae0;z-index:5;backdrop-filter:blur(6px)}
+.tabs button{white-space:nowrap}.tabs .on{background:var(--n);color:#000}
+.pg{display:none;padding:12px}.pg.on{display:block}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:12px}@media(max-width:900px){.grid{grid-template-columns:1fr}}
+.c{background:var(--p);border:1px solid #232b48;border-radius:10px;padding:12px;margin-bottom:12px}
+h3{margin:0 0 8px;color:var(--n)}
+canvas{width:100%;display:block;background:#000;border-radius:8px}#cv{height:320px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+button,select{background:#0c1020;color:var(--n);border:1px solid var(--n);border-radius:6px;padding:7px 11px;cursor:pointer;font-size:13px}
+button:hover{box-shadow:0 0 10px var(--n)}.big{font-size:30px;color:var(--m);text-shadow:0 0 10px var(--m);font-weight:700}
+.k{display:flex;flex-direction:column;align-items:center;font-size:11px}input[type=range]{accent-color:var(--m)}
+#drop{border:1px dashed #445;padding:8px;border-radius:8px;color:#889;cursor:pointer}
+#chat{height:340px;overflow:auto;background:#0a0d18;border-radius:8px;padding:8px;font-size:13px}
+.msg{margin:4px 0;padding:6px;border-radius:6px;background:#111830}.me{border-left:3px solid var(--n)}.st{font-size:11px;color:var(--m)}
+textarea{width:100%;background:#0a0d18;color:var(--t);border:1px solid #334;border-radius:6px;padding:6px;margin-top:8px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}.gal figure{margin:0;background:#000;border-radius:8px;overflow:hidden}
+.gal img{width:100%;aspect-ratio:1;object-fit:cover;display:block;cursor:zoom-in}.gal figcaption{font-size:11px;padding:5px}
+.small{font-size:11px;color:#778}a{color:var(--n)}
+#sky{height:min(80vh,640px);touch-action:none}#tip{position:fixed;pointer-events:none;background:#000c;border:1px solid var(--n);padding:4px 8px;border-radius:6px;font-size:12px;display:none;z-index:9}
+.snd{display:flex;justify-content:space-between;align-items:center;gap:6px;padding:6px;border-bottom:1px solid #1d2340}
+.news a{display:block;padding:6px 0;border-bottom:1px solid #1d2340;text-decoration:none}
+.chk label{margin-right:10px;white-space:nowrap}
+#ar{position:fixed;inset:0;z-index:20;display:none;background:#000}#ar video,#ar canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:0;background:transparent}
+#ar button{position:absolute;top:10px;right:10px;z-index:2}
+#ticker{white-space:nowrap;overflow:hidden;font-size:12px;color:var(--y);padding:4px 12px;border-bottom:1px solid #1d2340}#ticker span{display:inline-block;animation:tk 90s linear infinite;padding-left:100%}@keyframes tk{to{transform:translateX(-100%)}}
+</style><link rel="icon" type="image/png" href="super-g-192.png"><link rel="apple-touch-icon" href="super-g-192.png"><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#04050a"><text y=%22.9em%22 font-size=%2290%22>🐉</text></svg>"><style>.hero{text-align:center;padding:30px 10px}.hero h2{font-size:52px;margin:0;background:linear-gradient(90deg,#00f0ff,#ff2bd6,#ffd36b);-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 0 14px #ff2bd6)}
+.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:14px 0}.hc{display:block;padding:16px;border:1px solid var(--n);border-radius:12px;background:#0c1020;color:var(--t);text-decoration:none;cursor:pointer;font-size:15px;text-align:center}.hc:hover{box-shadow:0 0 16px var(--m);border-color:var(--m)}.hc.off{opacity:.45}
+#agList{display:flex;flex-wrap:wrap;gap:6px;max-height:220px;overflow:auto}.agb.on{background:var(--m);color:#000}#agChat,#djChat{height:360px;overflow:auto;background:#0a0d18;border-radius:8px;padding:8px}input.t{background:#0a0d18;color:var(--t);border:1px solid #334;border-radius:6px;padding:8px;width:100%}</style>
+</head><body>
+<header><h1 data-go="home" style="cursor:pointer">Super G 🐲 · D DRAGONMOON DJ</h1><a href="#brains" id="mainbot" style="display:inline-block;margin:6px 0;padding:8px 14px;background:#ffd400;color:#000;font-weight:700;border-radius:8px;text-decoration:none">🐉 Główny bot D → Mózgi</a> <nav id="links"></nav></header>
+<div id="ticker"><span id="tick">Ładowanie wiadomości kosmicznych…</span></div>
+<div class="tabs" id="tabs"></div>
+
+<section class="pg on" id="p-home"><div class="hero"><img src="super-g-logo.png" alt="Super G" style="width:150px;height:150px;filter:drop-shadow(0 0 22px #39ff14)"><h2>Super G 🐲</h2><div class="small">Kosmiczny hub Daniela — DJ, wizualizacje, niebo i wszystkie boty w jednym miejscu</div>
+<div class="hgrid">
+<a class="hc" data-go="deck">🎛️ Decki DJ</a><a class="hc" data-go="milkdrop">👹 Milkdrop</a><a class="hc" data-go="live">🔭 Niebo</a><a class="hc" data-go="stars">✨ Gwiazdy</a><a class="hc" data-go="snd">🛰️ Dźwięki</a><a class="hc" data-go="ai">🧠 Mózgi</a><a class="hc" data-go="mt">🧩 Multitask</a><a class="hc" data-go="bots">🤖 Boty</a><a class="hc" data-go="agents">🐲 Agenci (25+)</a><a class="hc" data-go="builder">🛠️ Agent Builder</a><a class="hc" data-go="djai">🎧 DJ Asystent AI</a><a class="hc" data-go="soc">📣 Społeczności</a>
+</div><h3>🌐 Inne aplikacje</h3><div class="hgrid" id="hApps">ładowanie…</div>
+<div class="small">📱 <a href="/downloads/D7-All-Bots.apk" style="color:var(--m)">Pobierz D7 All Bots (Android)</a></div></div></section>
+<section class="pg" id="p-agents"><div class="grid"><div class="c"><h3 id="agTitle">🐲 Agenci — wybierz bota</h3><div id="agChat"></div>
+<div class="row"><label><input type="checkbox" id="agAll"> 📢 do wszystkich</label><span id="agErr" class="small"></span></div>
+<div class="row"><textarea id="agIn" rows="2" placeholder="Wiadomość (Enter = wyślij): trafia do kolejki bota + natychmiastowa odpowiedź AI"></textarea><button id="agSend">Wyślij</button></div></div>
+<div class="c"><h3>Lista <span id="agCount" class="small"></span></h3><div id="agList"></div><div class="row"><button data-go="builder">➕ Nowy agent</button></div></div></div></section>
+<section class="pg" id="p-builder"><div class="c" style="max-width:640px"><h3>🛠️ Agent Builder</h3>
+<input class="t" id="abName" placeholder="Nazwa agenta, np. Super Techno G"><br><br><input class="t" id="abRole" placeholder="Rola, np. Selekcja techno"><br><br>
+<textarea id="abPers" rows="5" placeholder="Persona / prompt systemowy: kim jest, jak mówi, co umie"></textarea>
+<div class="row"><button id="abGo">✅ Utwórz i czatuj</button><span id="abMsg" class="small"></span></div></div></section>
+<section class="pg" id="p-djai"><div class="c"><h3>🎧 DJ Asystent Super G 🐲</h3><div id="djChat"></div>
+<div class="row"><button data-djq="Odpal demo i włącz Milkdrop">▶ Demo + Milkdrop</button><button data-djq="Zaproponuj 5 utworów techno 128 BPM na rozgrzewkę">🎵 Propozycje techno</button><button data-djq="Następny preset wizualizacji">👹 Następny preset</button><button data-djq="Jakie FX dać na przejście w breakdownie?">🎚️ FX</button></div>
+<div class="row"><input class="t" id="djIn" placeholder="Zapytaj o utwory, FX, albo powiedz: włącz demo / milkdrop / fala…" style="flex:1"><button id="djGo">Zapytaj</button></div></div></section>
+<section class="pg" id="p-deck"><div class="grid"><div>
+<div class="c">
+ <div style="position:relative"><canvas id="cv"></canvas><canvas id="mdc" style="display:none;position:absolute;inset:0;width:100%;height:100%"></canvas></div>
+ <div class="row"><div><div class="small">UTWÓR</div><div id="title" class="big" style="font-size:17px">— brak utworu —</div></div>
+ <div><div class="small">BPM</div><div id="bpm" class="big">---</div></div>
+ <select id="mode"><option value="bars">Słupki</option><option value="wave">Fala</option><option value="part">Cząsteczki</option><option value="nebula">Mgławica</option><option value="devil">👹 Milkdrop Devil</option></select><button id="mdNext" title="N">👹 następny preset</button><span id="mdName" class="small"></span></div>
+ <div class="row">
+  <button id="demo">▶ Demo (128 BPM)</button><button id="play">⏯ Play/Pauza</button>
+  <label><input type="file" id="file" accept="audio/*" hidden><span id="drop">📂 Upuść/wybierz plik audio (Deck A)</span></label>
+ </div>
+ <div class="row">
+  <div class="k">GAIN<input type="range" id="gain" min="0" max="1.5" step=".01" value=".8"></div>
+  <div class="k">FILTR LPF<input type="range" id="filt" min="200" max="20000" step="10" value="20000"></div>
+  <div class="k">REZONANS<input type="range" id="q" min=".1" max="20" step=".1" value="1"></div>
+  <div class="k">A ◀ CROSSFADER ▶ B<input type="range" id="xf" min="0" max="1" step=".01" value="0" style="width:200px"></div>
+ </div>
+ <div class="small" style="margin-top:6px">Deck A = plik / dźwięk NASA, Deck B = demo / kosmiczny syntezator. Crossfader równej mocy.</div>
+</div>
+<div class="c"><h3>🎚️ DJ — Deck A</h3>
+ <div class="row">
+  <div class="k">EQ LOW<input type="range" id="eqL" min="-24" max="12" step=".5" value="0"></div>
+  <div class="k">EQ MID<input type="range" id="eqM" min="-24" max="12" step=".5" value="0"></div>
+  <div class="k">EQ HIGH<input type="range" id="eqH" min="-24" max="12" step=".5" value="0"></div>
+  <button id="eqR">EQ reset</button>
+ </div>
+ <div class="row"><button id="cueSet">📍 Ustaw CUE</button><button id="cueGo">⏮ CUE (C)</button>
+  <span class="small">Hot cue (klik = ustaw/skocz, Shift+klik = usuń):</span><span id="hc"></span></div>
+ <div class="row"><button id="nudM">◀ −1% (−)</button><button id="nudP">+1% ▶ (+)</button><button id="sync">🔗 SYNC do 128</button><button id="rate1">1.00×</button><span id="rateV" class="small">tempo 1.00×</span></div>
+ <div class="row"><span class="small">LOOP (takty):</span><button class="lp" data-b="1">1</button><button class="lp" data-b="2">2</button><button class="lp" data-b="4">4</button><button class="lp" data-b="8">8</button><button id="lpOff">⏹ loop off</button><span id="lpV" class="small"></span></div>
+ <div class="row"><button id="hp">🎧 CUE słuchawki: OFF</button><span class="small">(symulacja — przeglądarka ma jedno wyjście audio; ON = podgląd Deck A ciszej w mastrze)</span></div>
+</div>
+<div class="c"><h3>📜 Playlista</h3><div id="pl" style="max-height:200px;overflow:auto"></div><div class="row"><button id="plNext">⏭ Następny</button><label class="small"><input type="checkbox" id="plAuto" checked> auto-następny</label></div></div>
+<div class="c"><h3>⌨️ Skróty</h3><div class="small">Spacja play/pauza · C cue · Shift+C ustaw cue · 1–4 hot cue · L loop 4 · K loop off · + / − tempo · S sync · M Milkdrop Devil · N następny preset · D demo · →/P następny utwór</div></div>
+</div>
+<div class="c" style="border:2px solid #ffd400"><h3>🐉 Bot D — szybki czat (główny bot)</h3>
+<textarea id="dIn" rows="2" placeholder="Napisz do Bota D… (Ctrl+Enter)"></textarea>
+<div class="row"><button id="dSend">Wyślij do D</button><button onclick="location.hash='brains'">Pełne Mózgi AI →</button><span id="dMsg" class="small"></span></div>
+<div id="dLast" class="small"></div>
+<div class="row"><a href="https://github.com/danieldydo-cyber/super-g-dragonmoon/releases/latest/download/D7-SuperApp-DargonMoon.apk">📱 Pobierz APK (SuperBotD)</a> · <a href="downloads/D7-SuperApp-DargonMoon-mac.zip">💻 Mac zip</a></div></div>
+</div></section>
+
+<section class="pg" id="p-live"><div class="c"><h3>🔭 Niebo na żywo (NASA)</h3>
+<div class="row" style="margin:0 0 10px"><button id="skyref">↻ Odśwież</button><span class="small" id="skyinfo"></span></div>
+<div id="apod"></div><h3 style="margin-top:14px">🌍 Ziemia — NASA EPIC (DSCOVR)</h3><div class="gal" id="epic"></div>
+<h3 style="margin-top:14px">☀️ Słońce teraz — NASA SDO</h3><div class="gal" id="sdo"></div>
+<div class="small" style="margin-top:8px">Źródła: api.nasa.gov (APOD, DEMO_KEY), epic.gsfc.nasa.gov, sdo.gsfc.nasa.gov. Cache 15 min po stronie serwera.</div></div></section>
+
+<section class="pg" id="p-stars"><div class="c"><h3>✨ Mapa gwiazd — Kraków 50.06°N 19.94°E</h3>
+<div class="row" style="margin:0 0 8px"><span id="clock" class="small"></span><label class="small"><input type="checkbox" id="cl" checked> linie gwiazdozbiorów</label><label class="small"><input type="checkbox" id="nm" checked> nazwy</label>
+<button id="now">Teraz</button><button id="ff">⏩ +1h</button><button id="arbtn">📱 Celuj telefonem w niebo</button><button id="synth">🎹 Kosmiczny syntezator</button></div>
+<canvas id="sky"></canvas>
+<div class="small" style="margin-top:6px">Środek = zenit, krawędź = horyzont, N u góry. Dotknij/najedź gwiazdę, aby ją rozpoznać. Katalog: d3-celestial (BSD) — ~1000 gwiazd do 4.6 mag + linie gwiazdozbiorów, liczone w przeglądarce dla bieżącego czasu. Syntezator: jasność gwiazdy → wysokość dźwięku, azymut → panorama; idzie do Decku B i wizualizera.</div>
+<div class="small">Rozpoznawanie ze zdjęcia (astrometry.net) — pominięte: ich API wymaga klucza konta.</div></div></section>
+
+<section class="pg" id="p-snd"><div class="c"><h3>🛰️ Dźwięki kosmosu (NASA, domena publiczna)</h3><div id="snds"></div>
+<div class="small" style="margin-top:6px">Pobrane z nasa.gov/historical-sounds na serwer (public/space-sounds). „▶ Deck A” gra przez mikser i wizualizer.</div></div></section>
+
+<section class="pg" id="p-soc"><div class="grid"><div class="c"><h3>📣 Społeczności</h3>
+<div class="row"><button onclick="share('fb')">Udostępnij na Facebooku</button><button onclick="share('x')">Udostępnij na X</button><button onclick="share('wa')">WhatsApp</button><button onclick="share('tg')">Telegram</button><button onclick="share('native')">📲 Udostępnij (telefon)</button><button onclick="share('copy')">📋 Kopiuj link (TikTok/Instagram)</button></div>
+<div class="row"><a href="https://www.facebook.com/" target="_blank">Facebook ↗</a><a href="https://www.tiktok.com/upload" target="_blank">TikTok — wgraj nagranie ↗</a><a href="https://www.tiktok.com/tag/techno" target="_blank">#techno na TikToku ↗</a><a href="https://www.facebook.com/NASA" target="_blank">NASA na FB ↗</a><a href="https://www.tiktok.com/@nasa" target="_blank">NASA na TikToku ↗</a></div>
+<div class="row"><button id="rec">⏺ Nagraj wizualizer (WebM) do TikToka</button><span class="small" id="recst"></span></div>
+<div class="small" style="margin-top:8px">Facebook i TikTok nie mają otwartego API bez logowania — tylko przyciski udostępniania i linki, bez scrapowania. TikTok nie ma linku „udostępnij URL”, więc kopiujesz link albo nagrywasz klip i wgrywasz ręcznie.</div></div>
+<div class="c news"><h3>🌐 Wiadomości kosmiczne</h3><div id="news"></div></div></div></section>
+
+<section class="pg" id="p-mt"><div class="mt-wrap" style="background:#0b0d14;border:1px solid #2a2a35;border-radius:14px;padding:16px;margin:0 0 16px">
+<h3 style="margin:0 0 8px;color:#ff2d95">🧩 Multitask — wiele zadań naraz</h3>
+<textarea id="mtIn" style="width:100%;min-height:110px;background:#000;color:#eef1f8;border:1px solid #2a2a35;border-radius:8px;padding:8px" placeholder="Jedno zadanie na linię…&#10;np. Napraw przycisk Play&#10;Zrób digest SpaceX&#10;Sprawdź APK"></textarea>
+<div style="margin:8px 0;font-size:13px">Cel:
+<label><input type="radio" name="mtMode" value="auto" checked> 🔁 Auto (po kolei: D, SuperGrok, Dragon, 77, SuperBotD, AutoFix, SuperCharger, DargonMoon)</label>
+<label><input type="radio" name="mtMode" value="all"> 🌐 Wszystkie boty (każde zadanie do każdego)</label>
+<label><input type="radio" name="mtMode" value="selected"> ✅ Wybrane:</label> <span id="mtBots"></span></div>
+<button id="mtGo" style="background:#000;color:#ff2d95;border:1px solid #ff2d95;border-radius:8px;padding:6px 12px;cursor:pointer">🚀 Rozdziel zadania</button> <span id="mtMsg" style="font-size:12px;color:#8b93a7"></span>
+<div style="overflow:auto;margin-top:12px"><table style="width:100%;border-collapse:collapse;font-size:12px" id="mtBoard"></table></div>
+<div style="font-size:11px;color:#8b93a7;margin-top:6px">Tablica odświeża się co 5 s. Boty wykonują zadania dopiero, gdy sprawdzą kolejkę.</div></div>
+</section>
+<section class="pg" id="p-bots"><div class="grid">
+<div class="c"><h3>🤖 Status botów (kolejka Command Center)</h3><div id="chips"></div></div>
+<div class="c"><h3>🩺 Porty / serwisy</h3><div id="ports"></div></div>
+<div class="c"><h3>🎧 SuperGrok — D7 DJ ONE</h3><div class="row"><a href="/d7one/app.html" target="_blank"><button>Otwórz D7 DJ ONE</button></a><a href="/d7one/kali.html" target="_blank"><button>Kali Radio</button></a><a href="/d7one/pro-dj.html" target="_blank"><button>Pro DJ</button></a></div>
+<div class="small">Kanał ntfy d7dj (ostatnie):</div><div id="ntfy" class="small"></div></div>
+<div class="c"><h3>🎼 77 — D7 Music AI</h3><div class="row"><a href="/apps/musicai/" target="_blank"><button>Otwórz w nowej karcie</button></a></div><iframe src="about:blank" data-src="/apps/musicai/" id="mai" style="width:100%;height:420px;border:1px solid #2a2a35;border-radius:8px;background:#000"></iframe></div>
+</div></section>
+<section class="pg" id="p-ai"><div class="c"><h3>🧠 Mózgi AI — Bot D + zespół</h3>
+<div class="chk" id="bsel"></div>
+<div id="chat"></div>
+<textarea id="in" rows="3" placeholder="Komenda / pytanie… (Ctrl+Enter wysyła)"></textarea>
+<div class="row"><select id="pri"><option value="normal">normalny</option><option value="high">wysoki</option></select><button id="send">Wyślij do zaznaczonych</button><span id="err" class="st"></span></div>
+<div class="small" style="margin-top:6px">Każdy zaznaczony bot dostaje osobny wpis w kolejce Command Center (queue.json); odpowiedzi pojawiają się tu, gdy bot oznaczy zadanie jako „done”.</div></div></section>
+
+<div id="tip"></div><div id="ar"><video id="vid" playsinline muted autoplay></video><canvas id="arc"></canvas><button id="arx">✕ Zamknij</button></div>
+<script>
+const $=id=>document.getElementById(id);
+const L=[["Command Center","/cc/"],["D7 DJ ONE","/d7one/app.html"],["dddj-site","/d7one/"],["Kali Radio","/d7one/kali.html"],["Pro DJ","/d7one/pro-dj.html"],["D7 Music AI","/apps/musicai/"],["📱 APK","downloads/D7-SuperApp-DargonMoon.apk"]];
+links.innerHTML=L.map(([n,u])=>`<a href="${u}" target="_blank">${n}</a>`).join('');
+const TABS=[["home","🐲 Start"],["agents","🐲 Agenci"],["builder","🛠️ Builder"],["djai","🎧 DJ AI"],["deck","🎛️ Decki"],["live","🔭 Niebo na żywo"],["stars","✨ Gwiazdy"],["snd","🛰️ Dźwięki"],["soc","📣 Społeczności"],["ai","🧠 Mózgi AI"],["mt","🧩 Multitask"],["bots","🤖 Boty+"]];
+tabs.innerHTML=TABS.map(([k,n])=>`<button data-t="${k}">${n}</button>`).join('');
+function tab(k){document.querySelectorAll('.pg').forEach(e=>e.classList.toggle('on',e.id=='p-'+k));document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t==k));if(k=='stars')resizeSky();if(k=='live'&&!skyLoaded)loadSky()}
+tabs.onclick=e=>e.target.dataset.t&&tab(e.target.dataset.t);
+const HM={home:'home',start:'home',agents:'agents',agenci:'agents',builder:'builder',djai:'djai',bots:'bots',boty:'bots',brains:'ai',ai:'ai',deck:'deck',live:'live',stars:'stars',snd:'snd',soc:'soc',mt:'mt'};
+function fromHash(){const k=HM[(location.hash||'').slice(1)];if(!k)return;tab(k);if(k=='ai')document.querySelectorAll('#bsel input').forEach(c=>c.checked=c.value.startsWith('d56dc24c'))}
+window.addEventListener('hashchange',fromHash);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// ===== AUDIO =====
+let eqL,eqM,eqH,ac,an,g,f,ga,gb,el,osc,data,mode='bars',parts=[],peaks=[],dest;
+function init(){if(ac)return;ac=new AudioContext();an=ac.createAnalyser();an.fftSize=2048;g=ac.createGain();f=ac.createBiquadFilter();f.type='lowpass';f.frequency.value=20000;
+ga=ac.createGain();gb=ac.createGain();ga.connect(f);gb.connect(f);eqL=ac.createBiquadFilter();eqL.type='lowshelf';eqL.frequency.value=250;eqM=ac.createBiquadFilter();eqM.type='peaking';eqM.frequency.value=1000;eqM.Q.value=.9;eqH=ac.createBiquadFilter();eqH.type='highshelf';eqH.frequency.value=4000;f.connect(eqL);eqL.connect(eqM);eqM.connect(eqH);eqH.connect(g);g.connect(an);an.connect(ac.destination);dest=ac.createMediaStreamDestination();g.connect(dest);data=new Uint8Array(an.frequencyBinCount);setXF();setFX()}
+function setXF(){const x=+xf.value;if(ga){ga.gain.value=Math.cos(x*Math.PI/2);gb.gain.value=Math.sin(x*Math.PI/2)}}
+function setFX(){if(!g)return;eqL.gain.value=+$('eqL').value;eqM.gain.value=+$('eqM').value;eqH.gain.value=+$('eqH').value;g.gain.value=+gain.value;f.frequency.value=+filt.value;f.Q.value=+q.value}
+[gain,filt,q,$('eqL'),$('eqM'),$('eqH')].forEach(e=>e.oninput=setFX);$('eqR').onclick=()=>{['eqL','eqM','eqH'].forEach(i=>$(i).value=0);setFX()};xf.oninput=setXF;$('mode').onchange=e=>setMode(e.target.value);
+demo.onclick=()=>{init();ac.resume();if(osc){osc.stop();osc=null;title.textContent='— demo stop —';return}
+ const t0=ac.currentTime,beat=60/128;osc=ac.createOscillator();osc.type='sawtooth';const og=ac.createGain();og.gain.value=0;osc.connect(og);og.connect(gb);
+ for(let i=0;i<2000;i++){const t=t0+i*beat;og.gain.setValueAtTime(.9,t);og.gain.exponentialRampToValueAtTime(.01,t+beat*.8);osc.frequency.setValueAtTime(i%8<4?55:41.2,t);osc.frequency.exponentialRampToValueAtTime(30,t+.12)}
+ osc.start();xf.value=1;setXF();title.textContent='Demo Oscylator — Techno 128'};
+function deckA(src,name){init();ac.resume();if(!el){el=new Audio();el.crossOrigin='anonymous';el.onended=()=>{if($('plAuto').checked)plNextF();else{el.currentTime=0;el.play()}};el.preservesPitch=false;ac.createMediaElementSource(el).connect(ga)}el.src=src;el.playbackRate=rate;el.play();title.textContent=name;curSrc=src;loopA=null;hot=[];drawHC();lpV.textContent='';drawPL();xf.value=0;setXF()}
+function load(file){const u=URL.createObjectURL(file),n=file.name.replace(/\.[^.]+$/,'');PL.push({src:u,t:'📂 '+n});deckA(u,n)}
+$('file').onchange=e=>e.target.files[0]&&load(e.target.files[0]);
+document.body.ondragover=e=>e.preventDefault();document.body.ondrop=e=>{e.preventDefault();const fl=e.dataTransfer.files[0];fl&&fl.type.startsWith('audio')&&load(fl)};
+play.onclick=()=>{init();if(ac.state==='running')ac.suspend();else ac.resume()};
+const ctx=cv.getContext('2d');let lastE=0,lastBeat=0,ints=[],bg=[];for(let i=0;i<200;i++)bg.push([Math.random(),Math.random(),Math.random()]);
+function bpmDetect(e,now){if(e>lastE*1.35&&e>60&&now-lastBeat>300){if(lastBeat){ints.push(now-lastBeat);if(ints.length>16)ints.shift();const s=[...ints].sort((a,b)=>a-b),m=s[s.length>>1];let b=60000/m;while(b<80)b*=2;while(b>180)b/=2;bpm.textContent=b.toFixed(0)}lastBeat=now}lastE=lastE*.9+e*.1}
+function draw(now){requestAnimationFrame(draw);if(loopA&&el&&el.currentTime>=loopA[1])el.currentTime=loopA[0];if(mode==='devil'&&viz&&$('p-deck').classList.contains('on')){const dp=devicePixelRatio,w=mdc.clientWidth*dp|0,h=mdc.clientHeight*dp|0;if(mdc.width!=w||mdc.height!=h){mdc.width=w;mdc.height=h;viz.setRendererSize(w,h)}viz.render();if(an){an.getByteFrequencyData(data);let e=0;for(let i=0;i<16;i++)e+=data[i];bpmDetect(e/16,now)}return}if(!$('p-deck').classList.contains('on')&&!rec)return;const dp=devicePixelRatio,W=cv.width=cv.clientWidth*dp,H=cv.height=cv.clientHeight*dp;ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(0,0,W,H);
+ let e=0;if(an){an.getByteFrequencyData(data);for(let i=0;i<16;i++)e+=data[i];e/=16;bpmDetect(e,now)}
+ for(const s of bg){ctx.fillStyle=`rgba(255,255,255,${.2+s[2]*.5+e/600})`;ctx.fillRect(s[0]*W,s[1]*H,dp*(1+s[2]),dp*(1+s[2]))}
+ if(!an){ctx.fillStyle='#556';ctx.font=`${18*dp}px sans-serif`;ctx.fillText('Kliknij Demo, wybierz dźwięk NASA lub upuść plik',20,H/2);return}
+ if(mode==='bars'){const n=96,w=W/n;for(let i=0;i<n;i++){const v=data[Math.floor(Math.pow(i/n,1.7)*data.length*.7)]/255,h=v*H;const gr=ctx.createLinearGradient(0,H,0,H-h);gr.addColorStop(0,'#00f0ff');gr.addColorStop(1,'#ff2bd6');ctx.fillStyle=gr;ctx.fillRect(i*w+1,H-h,w-2,h);peaks[i]=Math.max((peaks[i]||0)-H*.006,h);ctx.fillStyle='#fff';ctx.fillRect(i*w+1,H-peaks[i]-3,w-2,2)}}
+ else if(mode==='wave'){const t=new Uint8Array(an.fftSize);an.getByteTimeDomainData(t);ctx.lineWidth=3*dp;ctx.strokeStyle='#00f0ff';ctx.shadowBlur=20;ctx.shadowColor='#00f0ff';ctx.beginPath();for(let i=0;i<t.length;i++){const x=i/t.length*W,y=t[i]/255*H;i?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.stroke();ctx.shadowBlur=0}
+ else if(mode==='nebula'){for(let i=0;i<64;i++){const v=data[i*4]/255,a=i/64*Math.PI*2+now/3000,r=H*.15+v*H*.35;ctx.fillStyle=`hsla(${280+i*2},100%,60%,${v*.5})`;ctx.beginPath();ctx.arc(W/2+Math.cos(a)*r*1.4,H/2+Math.sin(a)*r,4*dp+v*14*dp,0,7);ctx.fill()}}
+ else{if(e>120)for(let i=0;i<8;i++)parts.push({x:W/2,y:H/2,vx:(Math.random()-.5)*e/8,vy:(Math.random()-.5)*e/8,l:1,c:Math.random()<.5?'0,240,255':'255,43,214'});
+  parts=parts.filter(p=>(p.l-=.012)>0);for(const p of parts){p.x+=p.vx;p.y+=p.vy;ctx.fillStyle=`rgba(${p.c},${p.l})`;ctx.beginPath();ctx.arc(p.x,p.y,3*dp,0,7);ctx.fill()}
+  ctx.strokeStyle='#ff2bd6';ctx.lineWidth=4;ctx.beginPath();ctx.arc(W/2,H/2,30+e,0,7);ctx.stroke()}}
+requestAnimationFrame(draw);
+// recording for TikTok
+let rec=null;$('rec').onclick=()=>{if(rec){rec.stop();return}init();const st=cv.captureStream(30);dest.stream.getAudioTracks().forEach(t=>st.addTrack(t));const ch=[];rec=new MediaRecorder(st);
+ rec.ondataavailable=e=>ch.push(e.data);rec.onstop=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(ch,{type:'video/webm'}));a.download='dragonmoon-dj.webm';a.click();rec=null;$('rec').textContent='⏺ Nagraj wizualizer (WebM) do TikToka';recst.textContent='Zapisano plik — wgraj go na TikTok/Facebook.'};
+ rec.start();$('rec').textContent='⏹ Zatrzymaj nagrywanie';recst.textContent='Nagrywanie… (przejdź do Decków)'};
+// ===== NIEBO NA ŻYWO =====
+let skyLoaded=false;
+function fig(u,c,link){return `<figure><a href="${esc(link||u)}" target="_blank"><img loading="lazy" src="${esc(u)}" alt="${esc(c)}"></a><figcaption>${esc(c)}</figcaption></figure>`}
+async function loadSky(r){skyLoaded=true;skyinfo.textContent='Ładowanie…';try{const d=await (await fetch('/api/sky'+(r?'?refresh=1':''))).json();
+ const a=d.apod;apod.innerHTML=a?`<div class="grid"><div>${a.media_type=='image'?`<a href="${esc(a.hdurl||a.url)}" target="_blank"><img src="${esc(a.url)}" style="width:100%;border-radius:8px"></a>`:`<iframe src="${esc(a.url)}" style="width:100%;aspect-ratio:16/9;border:0" allowfullscreen></iframe>`}</div><div><h3>APOD ${esc(a.date)}: ${esc(a.title)}</h3><div class="small">${esc(a.copyright?'© '+a.copyright:'NASA')}</div><p style="font-size:13px">${esc(a.explanation)}</p></div></div>`:'<div class="small">APOD niedostępny (limit DEMO_KEY?)</div>';
+ const t=Date.now();epic.innerHTML=d.epic.map(x=>fig(x.url,x.date+' UTC')).join('');sdo.innerHTML=d.sdo.map(x=>fig(x.url+'?t='+Math.floor(t/9e5),x.caption,x.url)).join('');
+ skyinfo.textContent='Zaktualizowano '+new Date().toLocaleTimeString('pl-PL')+(d.errors.length?' · błędy: '+d.errors.join('; '):'')}catch(e){skyinfo.textContent='Błąd: '+e.message}}
+skyref.onclick=()=>loadSky(1);
+// ===== MAPA GWIAZD =====
+const LAT=50.06,LON=19.94,R=Math.PI/180;let SKY=null,tOff=0,vis=[],pick=null;
+fetch('data/sky.json').then(r=>r.json()).then(d=>{SKY=d;resizeSky()});
+function lst(d){const jd=d/864e5+2440587.5,T=(jd-2451545)/36525;return ((280.46061837+360.98564736629*(jd-2451545)+T*T*.000387933+LON)%360+360)%360}
+function altaz(ra,dec,L){const H=(L-ra)*R,de=dec*R,la=LAT*R;const sa=Math.sin(de)*Math.sin(la)+Math.cos(de)*Math.cos(la)*Math.cos(H),alt=Math.asin(sa);
+ let az=Math.atan2(-Math.sin(H)*Math.cos(de),Math.cos(la)*Math.sin(de)-Math.sin(la)*Math.cos(de)*Math.cos(H));return [alt/R,(az/R+360)%360]}
+const sc=$('sky'),sx=sc.getContext('2d');
+function resizeSky(){const dp=devicePixelRatio;sc.width=sc.clientWidth*dp;sc.height=sc.clientHeight*dp;drawSky()}
+addEventListener('resize',resizeSky);
+function proj(alt,az,W,H){const r=Math.min(W,H)/2-10,rr=r*Math.tan((90-alt)*R/2)/Math.tan(45*R),a=az*R;return [W/2-rr*Math.sin(a),H/2-rr*Math.cos(a)]}
+function sname(s){return s[3]||s[4]}
+function drawSky(){if(!SKY||!sc.width)return;const W=sc.width,H=sc.height,dp=devicePixelRatio,now=new Date(Date.now()+tOff),L=lst(now);
+ clock.textContent=now.toLocaleString('pl-PL')+' · LST '+(L/15).toFixed(2)+'h';
+ sx.fillStyle='#000';sx.fillRect(0,0,W,H);const r=Math.min(W,H)/2-10;const gr=sx.createRadialGradient(W/2,H/2,0,W/2,H/2,r);gr.addColorStop(0,'#0b1030');gr.addColorStop(1,'#140a2a');sx.fillStyle=gr;sx.beginPath();sx.arc(W/2,H/2,r,0,7);sx.fill();
+ sx.strokeStyle='#ff2bd655';sx.stroke();sx.fillStyle='#ff2bd6';sx.font=`${13*dp}px sans-serif`;[['N',0],['E',90],['S',180],['W',270]].forEach(([n,a])=>{const p=proj(-3,a,W,H);sx.fillText(n,p[0]-5*dp,p[1]+5*dp)});
+ if($('cl').checked){sx.strokeStyle='#00f0ff44';sx.lineWidth=dp;for(const [id,segs] of SKY.lines)for(const seg of segs){sx.beginPath();let pen=false;for(const [ra,de] of seg){const [al,az]=altaz((ra+360)%360,de,L);if(al<0){pen=false;continue}const p=proj(al,az,W,H);pen?sx.lineTo(...p):sx.moveTo(...p);pen=true}sx.stroke()}}
+ vis=[];for(const s of SKY.stars){const [al,az]=altaz((s[0]+360)%360,s[1],L);if(al<0)continue;const p=proj(al,az,W,H),rad=Math.max(.6,(5-s[2])*.9)*dp;vis.push({s,al,az,x:p[0],y:p[1]});
+  sx.fillStyle=s[2]<1?'#fff':s[2]<2.5?'#e8f0ff':'#9fb0e0';sx.beginPath();sx.arc(p[0],p[1],rad,0,7);sx.fill();if($('nm').checked&&s[3]&&s[2]<2.2){sx.fillStyle='#ffd36bcc';sx.font=`${10*dp}px sans-serif`;sx.fillText(s[3],p[0]+rad+2,p[1]-2)}}
+ if(pick){sx.strokeStyle='#ff2bd6';sx.lineWidth=2*dp;sx.beginPath();sx.arc(pick.x,pick.y,9*dp,0,7);sx.stroke()}}
+setInterval(()=>{if($('p-stars').classList.contains('on'))drawSky()},10000);
+['cl','nm'].forEach(i=>$(i).onchange=drawSky);$('now').onclick=()=>{tOff=0;drawSky()};$('ff').onclick=()=>{tOff+=36e5;drawSky()};
+function hit(ev){const b=sc.getBoundingClientRect(),dp=devicePixelRatio,x=(ev.clientX-b.left)*dp,y=(ev.clientY-b.top)*dp;let best=null,bd=1e9;for(const v of vis){const d=(v.x-x)**2+(v.y-y)**2;if(d<bd){bd=d;best=v}}
+ if(best&&bd<(22*dp)**2){pick=best;const s=best.s;tip.style.display='block';tip.style.left=ev.clientX+12+'px';tip.style.top=ev.clientY+12+'px';tip.innerHTML=`<b>${esc(s[3]||s[4]||'gwiazda')}</b> ${s[3]?esc(s[4]):''}<br>jasność ${s[2]} mag · wys. ${best.al.toFixed(1)}° · az. ${best.az.toFixed(1)}°`;
+  if(synthOn)ping(s[2],best.az)}else{pick=null;tip.style.display='none'}drawSky()}
+sc.onpointermove=hit;sc.onpointerdown=hit;sc.onpointerleave=()=>tip.style.display='none';
+// kosmiczny syntezator: jasność -> wysokość, azymut -> panorama
+const SCALE=[0,3,5,7,10];let synthOn=false,synthT=null;
+function mag2f(m){const st=Math.round((5-m)*3),o=Math.floor(st/5);return 110*Math.pow(2,o+SCALE[st%5]/12)}
+function ping(m,az){init();ac.resume();const t=ac.currentTime,o=ac.createOscillator(),gg=ac.createGain(),p=ac.createStereoPanner(),dl=ac.createDelay();o.type='sine';o.frequency.value=mag2f(m);p.pan.value=Math.sin(az*R);
+ gg.gain.setValueAtTime(0,t);gg.gain.linearRampToValueAtTime(.25,t+.02);gg.gain.exponentialRampToValueAtTime(.001,t+2.5);dl.delayTime.value=.375;const fb=ac.createGain();fb.gain.value=.45;
+ o.connect(gg);gg.connect(p);p.connect(gb);p.connect(dl);dl.connect(fb);fb.connect(dl);fb.connect(gb);o.start(t);o.stop(t+2.6)}
+$('synth').onclick=()=>{synthOn=!synthOn;$('synth').textContent=synthOn?'⏹ Stop syntezatora':'🎹 Kosmiczny syntezator';clearInterval(synthT);if(!synthOn)return;init();ac.resume();xf.value=Math.max(+xf.value,.5);setXF();title.textContent='Kosmiczny syntezator — niebo nad Krakowem';
+ let i=0;synthT=setInterval(()=>{const b=vis.filter(v=>v.s[2]<3.5).sort((a,b)=>a.az-b.az);if(!b.length)return;const v=b[i++%b.length];pick=v;ping(v.s[2],v.az);if($('p-stars').classList.contains('on'))drawSky()},234)};
+// AR: kamera + orientacja
+let heading=0,pitch=0,arOn=false;const arc=$('arc'),ax=arc.getContext('2d');
+$('arbtn').onclick=async()=>{try{if(window.DeviceOrientationEvent&&DeviceOrientationEvent.requestPermission)await DeviceOrientationEvent.requestPermission()}catch(e){}
+ $('ar').style.display='block';arOn=true;try{$('vid').srcObject=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}})}catch(e){}
+ addEventListener('deviceorientationabsolute',ori,true);addEventListener('deviceorientation',ori,true);arLoop()};
+function ori(e){heading=e.webkitCompassHeading!=null?e.webkitCompassHeading:(360-(e.alpha||0))%360;pitch=(e.beta||90)-90}
+$('arx').onclick=()=>{arOn=false;$('ar').style.display='none';const s=$('vid').srcObject;s&&s.getTracks().forEach(t=>t.stop())};
+function arLoop(){if(!arOn)return;requestAnimationFrame(arLoop);const dp=devicePixelRatio,W=arc.width=innerWidth*dp,H=arc.height=innerHeight*dp,F=60;ax.clearRect(0,0,W,H);
+ if(!SKY)return;const L=lst(new Date());ax.font=`${13*dp}px sans-serif`;
+ for(const s of SKY.stars){if(s[2]>3.5)continue;const [al,az]=altaz((s[0]+360)%360,s[1],L);let da=((az-heading+540)%360)-180,dl=al-pitch;if(Math.abs(da)>F/2||Math.abs(dl)>F*H/W)continue;
+  const x=W/2+da/F*W,y=H/2-dl/F*W;ax.fillStyle='#fff';ax.beginPath();ax.arc(x,y,(4-s[2])*1.5*dp+1,0,7);ax.fill();if(s[3]){ax.fillStyle='#ffd36b';ax.fillText(s[3],x+8*dp,y-4*dp)}}
+ ax.fillStyle='#00f0ff';ax.fillText(`kierunek ${heading.toFixed(0)}° · wysokość ${pitch.toFixed(0)}°`+(heading?'':' (brak czujnika orientacji)'),12*dp,H-14*dp)}
+// ===== DŹWIĘKI =====
+fetch('space-sounds/list.json').then(r=>r.json()).then(l=>{snds.innerHTML=l.map(s=>`<div class="snd"><span>${esc(s.t)}</span><span><button onclick="deckA('space-sounds/${s.f}','${esc(s.t).replace(/'/g,'')}');tab('deck')">▶ Deck A</button> <a class="small" href="${esc(s.src)}" target="_blank">źródło</a></span></div>`).join('')});
+// ===== SPOŁECZNOŚCI / NEWS =====
+function share(k){const u=location.href.split('#')[0],t='D DragonMoon DJ — kosmiczny DJ z Krakowa 🐉🌙',e=encodeURIComponent;
+ const m={fb:`https://www.facebook.com/sharer/sharer.php?u=${e(u)}`,x:`https://twitter.com/intent/tweet?text=${e(t)}&url=${e(u)}`,wa:`https://wa.me/?text=${e(t+' '+u)}`,tg:`https://t.me/share/url?url=${e(u)}&text=${e(t)}`};
+ if(m[k])return open(m[k],'_blank');if(k=='native'&&navigator.share)return navigator.share({title:t,url:u});navigator.clipboard.writeText(u).then(()=>alert('Skopiowano: '+u))}
+fetch('/api/news').then(r=>r.json()).then(d=>{const it=d.items||[];news.innerHTML=it.slice(0,15).map(x=>`<a href="${esc(x.url)}" target="_blank">${esc(x.title)}<div class="small">${esc(x.source)} · ${esc((x.date||'').slice(0,10))}</div></a>`).join('')||'<div class="small">Brak wiadomości</div>';
+ tick.textContent=it.slice(0,10).map(x=>'🚀 '+x.title).join('   ·   ')||'Brak wiadomości'});
+// ===== MÓZGI AI =====
+let auth='',BOTS={};sessionStorage.removeItem('ddauth');
+async function api(p,o={}){o.headers=Object.assign({'Content-Type':'application/json'},auth?{Authorization:'Basic '+btoa('d:'+auth)}:{});let r=await fetch(p,o);
+ return r.json()}
+fetch('/api/bots').then(r=>r.json()).then(b=>{BOTS=b;bsel.innerHTML=Object.entries(b).map(([id,n])=>`<label><input type="checkbox" value="${id}" ${n=='D'?'checked':''}> ${esc(n)}</label>`).join('')+' <button onclick="document.querySelectorAll(\'#bsel input\').forEach(c=>c.checked=true)">wszystkie</button>'});
+async function refresh(){if(!$('p-ai').classList.contains('on'))return;try{const q=await api('/api/queue');if(!Array.isArray(q))throw Error(q.error);err.textContent='';const atB=chat.scrollTop+chat.clientHeight>=chat.scrollHeight-20;
+ chat.innerHTML=q.map(x=>`<div class="msg me"><span class="st">→ ${esc(x.bot_name||BOTS[x.bot_id])}</span> ${esc(x.text)}<div class="st">${x.status} · ${x.created||''}</div>${x.result?`<div class="msg">🤖 <b>${esc(x.bot_name)}:</b> ${esc(x.result)}</div>`:''}</div>`).join('');if(atB)chat.scrollTop=1e9}catch(e){err.textContent=e.message}}
+send.onclick=async()=>{const t=$('in').value.trim();if(!t)return;const bots=[...document.querySelectorAll('#bsel input:checked')].map(c=>c.value);if(!bots.length){err.textContent='zaznacz bota';return}
+ const r=await api('/api/command',{method:'POST',body:JSON.stringify({text:t,priority:pri.value,bots})});if(r.error)err.textContent=r.error;else $('in').value='';chat.scrollTop=1e9;refresh()};
+$('in').onkeydown=e=>{if(e.key==='Enter'&&e.ctrlKey)send.onclick()};
+document.querySelector('[data-t=ai]').addEventListener('click',refresh);setInterval(refresh,5000);
+// ===== MILKDROP DEVIL (Butterchurn) =====
+let viz=null,mdKeys=[],mdI=0,mdP={};
+function ld(u){return new Promise((ok,no)=>{const x=document.createElement('script');x.src=u;x.onload=ok;x.onerror=()=>no(Error('nie wczytano '+u));document.head.appendChild(x)})}
+async function setMode(m){mode=m;$('mode').value=m;mdc.style.display=m==='devil'?'block':'none';if(m!=='devil')return;
+ try{init();ac.resume();if(!viz){mdName.textContent='ładowanie Butterchurn…';await ld('libs/butterchurn.min.js');await ld('libs/butterchurnPresets.min.js');try{await ld('libs/butterchurnPresetsExtra.min.js')}catch(e){}
+  const BC=window.butterchurn.default||window.butterchurn,P1=window.butterchurnPresets,P2=window.butterchurnPresetsExtra;
+  mdP=Object.assign({},(P1.getPresets?P1:P1.default).getPresets(),P2?((P2.getPresets?P2:P2.default).getPresets()):{});
+  const evil=/devil|demon|hell|satan|evil|blood|fire|flame|inferno|\bred\b|dark|lava|burn|hades|skull/i;
+  mdKeys=Object.keys(mdP).filter(k=>evil.test(k));if(!mdKeys.length)mdKeys=Object.keys(mdP);
+  const dp=devicePixelRatio;mdc.width=mdc.clientWidth*dp;mdc.height=mdc.clientHeight*dp;
+  viz=BC.createVisualizer(ac,mdc,{width:mdc.width,height:mdc.height,pixelRatio:1});viz.connectAudio(g);mdI=0}
+  mdLoad()}catch(e){mdName.textContent='❌ Milkdrop: '+e.message;mdc.style.display='none'}}
+function mdLoad(){if(!viz)return;const k=mdKeys[mdI%mdKeys.length];viz.loadPreset(mdP[k],2);mdName.textContent='👹 '+k+' ('+(mdI%mdKeys.length+1)+'/'+mdKeys.length+')'}
+$('mdNext').onclick=()=>{if(mode!=='devil')return setMode('devil');mdI++;mdLoad()};
+// ===== DJ =====
+let rate=1,cue=0,hot=[],loopA=null,curSrc='',hpOn=false;
+const curBpm=()=>+bpm.textContent||128;
+function setRate(r){rate=Math.max(.5,Math.min(2,r));if(el)el.playbackRate=rate;rateV.textContent='tempo '+rate.toFixed(2)+'× (~'+Math.round(curBpm()*rate/(el?1:1))+' BPM)'}
+nudM.onclick=()=>setRate(rate-.01);nudP.onclick=()=>setRate(rate+.01);rate1.onclick=()=>setRate(1);
+sync.onclick=()=>{const b=+bpm.textContent;if(!b){rateV.textContent='brak wykrytego BPM — puść utwór';return}setRate(rate*128/b)};
+cueSet.onclick=()=>{if(el){cue=el.currentTime;cueGo.textContent='⏮ CUE '+cue.toFixed(1)+'s'}};
+cueGo.onclick=()=>{if(el){el.currentTime=cue;el.play()}};
+function drawHC(){hc.innerHTML=[0,1,2,3].map(i=>`<button data-h="${i}" style="min-width:52px;${hot[i]!=null?'background:#ff2d95;color:#000':''}">${i+1}${hot[i]!=null?' '+hot[i].toFixed(1):''}</button>`).join('')}
+hc.onclick=e=>{const i=e.target.dataset.h;if(i==null||!el)return;if(e.shiftKey)hot[i]=null;else if(hot[i]==null)hot[i]=el.currentTime;else{el.currentTime=hot[i];el.play()}drawHC()};drawHC();
+document.querySelectorAll('.lp').forEach(b=>b.onclick=()=>setLoop(+b.dataset.b));
+function setLoop(bars){if(!el)return lpV.textContent='załaduj utwór na Deck A';const len=bars*4*60/curBpm();loopA=[el.currentTime,el.currentTime+len];lpV.textContent=`loop ${bars} takt(y) = ${len.toFixed(2)}s @ ${curBpm()} BPM`}
+lpOff.onclick=()=>{loopA=null;lpV.textContent=''};
+hp.onclick=()=>{hpOn=!hpOn;hp.textContent='🎧 CUE słuchawki: '+(hpOn?'ON (A)':'OFF');hp.style.background=hpOn?'#ffd400':'';if(ga){ga.gain.value=hpOn?Math.cos(+xf.value*Math.PI/2)*.35:Math.cos(+xf.value*Math.PI/2)}};
+let PL=[];
+function drawPL(){pl.innerHTML=PL.map((x,i)=>`<div class="snd" style="${x.src==curSrc?'color:#ffd400':''}"><span>${esc(x.t)}</span><button data-p="${i}">▶</button></div>`).join('')||'<div class="small">ładowanie…</div>'}
+pl.onclick=e=>{const i=e.target.dataset.p;if(i!=null)deckA(PL[i].src,PL[i].t)};
+function plNextF(){if(!PL.length)return;const i=(PL.findIndex(x=>x.src==curSrc)+1)%PL.length;deckA(PL[i].src,PL[i].t)}
+plNext.onclick=plNextF;
+fetch('space-sounds/list.json').then(r=>r.json()).then(l=>{PL=l.map(s=>({src:'space-sounds/'+s.f,t:'🛰️ '+s.t})).concat(PL);drawPL()});
+addEventListener('keydown',e=>{if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;const k=e.key;
+ if(k==' '){e.preventDefault();if(el&&!el.paused)el.pause();else if(el)el.play();else play.onclick()}
+ else if(k=='c')cueGo.onclick();else if(k=='C')cueSet.onclick();else if('1234'.includes(k)&&k.length==1){const b=hc.children[+k-1];b&&b.dispatchEvent(new MouseEvent('click',{bubbles:true,shiftKey:e.shiftKey}))}
+ else if(k=='l')setLoop(4);else if(k=='k')lpOff.onclick();else if(k=='+'||k=='=')nudP.onclick();else if(k=='-')nudM.onclick();else if(k=='s')sync.onclick();
+ else if(k=='m')setMode(mode==='devil'?'bars':'devil');else if(k=='n')$('mdNext').onclick();else if(k=='d')demo.onclick();else if(k=='ArrowRight'||k=='p')plNextF()});
+// ===== BOT D quick chat =====
+async function dSendF(){const t=dIn.value.trim();if(!t)return;dMsg.textContent='wysyłanie…';try{const r=await api('/api/command',{method:'POST',body:JSON.stringify({text:t,priority:'high',bots:['d56dc24c-0f3f-4fc4-91fd-1b2ccafdea06']})});if(r.error)throw Error(r.error);dIn.value='';dMsg.textContent='✅ w kolejce D';dLastF()}catch(e){dMsg.textContent='❌ '+e.message}}
+dSend.onclick=dSendF;dIn.onkeydown=e=>{if(e.key==='Enter'&&e.ctrlKey)dSendF()};
+async function dLastF(){try{const q=await api('/api/queue');if(!Array.isArray(q))return;const x=q.filter(x=>x.bot_id.startsWith('d56dc24c')).slice(-3).reverse();dLast.innerHTML=x.map(x=>`<div>• ${esc(x.text.slice(0,90))} — <b>${esc(x.status)}</b>${x.result?': '+esc(x.result.slice(0,140)):''}</div>`).join('')}catch(e){}}
+dLastF();setInterval(dLastF,15000);
+// ===== BOTY+ =====
+async function botsTab(){if(!$('p-bots').classList.contains('on'))return;if(mai.src=='about:blank')mai.src=mai.dataset.src;
+ try{const c=await (await fetch('/api/chips')).json();chips.innerHTML=Object.entries(c).map(([n,v])=>`<span style="display:inline-block;margin:3px;padding:5px 9px;border-radius:12px;border:1px solid ${v.pending?'#ffb547':'#2a2a35'}" title="${esc(v.last)}"><b>${esc(n)}</b> ⏳${v.pending} ✅${v.done}${v.timeout?' ⌛'+v.timeout:''}</span>`).join('')}catch(e){chips.textContent='❌ '+e.message}
+ try{const p=await (await fetch('/api/ports')).json();ports.innerHTML=Object.entries(p).map(([n,v])=>`<div>${v.up?'🟢':'🔴'} ${esc(n)} <span class="small">:${v.port}</span></div>`).join('')}catch(e){ports.textContent='❌ '+e.message}
+ try{const m=await (await fetch('/api/ntfy')).json();ntfy.innerHTML=Array.isArray(m)?m.filter(x=>x.message).slice(-8).reverse().map(x=>`<div>${new Date(x.time*1000).toLocaleString('pl')} — ${esc(x.message).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank">$1</a>')}</div>`).join(''):'❌ '+esc(m.error)}catch(e){ntfy.textContent='❌ '+e.message}}
+document.querySelector('[data-t=bots]').addEventListener('click',()=>setTimeout(botsTab,50));setInterval(botsTab,15000);
+fromHash();if(location.hash=='#bots'||location.hash=='#boty')setTimeout(botsTab,100);
+</script><script>window.MTCFG={post:'/api/multitask',board:'/api/board',bots:async()=>Object.entries(await (await fetch('/api/bots')).json())};
+(function(){const C=window.MTCFG,$=i=>document.getElementById(i),e=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function J(u,o){const r=await fetch(u,o?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(o)}:{cache:'no-store'});let j={};try{j=await r.json()}catch(_){}if(!r.ok)throw Error(j.error||('HTTP '+r.status));return j}
+async function bots(){try{const b=await C.bots();$('mtBots').innerHTML=b.map(([id,n])=>`<label style="margin-right:6px"><input type="checkbox" class="mtB" value="${e(id)}"> ${e(n)}</label>`).join('')}catch(x){$('mtMsg').textContent='❌ Nie wczytano botów: '+x.message}}
+$('mtGo').onclick=async()=>{const lines=$('mtIn').value.split('\n').map(s=>s.trim()).filter(Boolean);if(!lines.length)return $('mtMsg').textContent='⚠️ Wpisz co najmniej jedno zadanie.';
+ const mode=document.querySelector('input[name=mtMode]:checked').value,sel=[...document.querySelectorAll('.mtB:checked')].map(x=>x.value);
+ if(mode=='selected'&&!sel.length)return $('mtMsg').textContent='⚠️ Zaznacz boty.';
+ try{const r=await J(C.post,{lines,mode,bots:sel});$('mtMsg').textContent='✅ Utworzono '+r.count+' zadań (partia '+r.batch+')';$('mtIn').value='';board()}catch(x){$('mtMsg').textContent='❌ Błąd: '+x.message}};
+async function board(){try{let q=await J(C.board);q=q.filter(x=>x.multitask).slice(-200).reverse();
+ $('mtBoard').innerHTML='<tr style="color:#00e5ff;text-align:left"><th>Partia</th><th>Bot</th><th>Zadanie</th><th>Status</th><th>Wynik</th><th>Czas</th></tr>'+(q.map(x=>`<tr style="border-top:1px solid #2a2a35"><td>${e(x.multitask)}</td><td><b>${e(x.bot_name)}</b></td><td>${e(x.text)}</td><td style="color:${x.status=='done'?'#b8ff3c':'#ffb547'}">${x.status=='done'?'✅ wykonane':'⏳ '+e(x.status)}</td><td>${e(x.result||'—')}</td><td>${e((x.updated||x.created||'').slice(5,16).replace('T',' '))}</td></tr>`).join('')||'<tr><td colspan=6>Brak zadań multitask.</td></tr>')}catch(x){$('mtMsg').textContent='❌ Tablica: '+x.message}}
+bots();board();setInterval(board,5000)})();
+</script><script src="superg.js"></script></body></html>
